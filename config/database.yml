@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: microverse_interview_database_dev
+  host: localhost
+
+test:
+  <<: *default
+  database: microverse_interview_database_test
+  host: localhost
+
+production:
+  <<: *default
+  pool: 10
+  database: <%= ENV['DATABASE_NAME'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
